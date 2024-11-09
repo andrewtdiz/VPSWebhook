@@ -60,9 +60,19 @@ const handleWebhook = async (req: CustomRequest, res: Response) => {
   res.sendStatus(204);
 };
 
-app.post("/", (req: Request, res: Response) => {
+app.get("/", async (req: Request, res: Response) => {
+  console.log("GET received");
+  res.send("Hell world");
+});
+
+app.post("/", async (req: Request, res: Response) => {
   console.log("POST received");
-  handleWebhook(req as CustomRequest, res);
+  try {
+    await handleWebhook(req as CustomRequest, res);
+  } catch (error) {
+    console.error("Error handling webhook:", error);
+    res.status(500).send("Internal server error");
+  }
 });
 
 app.listen(port, () => {
