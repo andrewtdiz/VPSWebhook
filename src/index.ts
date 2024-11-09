@@ -50,6 +50,8 @@ const handleWebhook = async (req: CustomRequest, res: Response) => {
   const jsonData = req.body;
   const { serviceId } = jsonData;
 
+  console.log(jsonData);
+
   if (!serviceId) {
     console.log("Missing serviceId");
     return res.status(400).send("Missing serviceId");
