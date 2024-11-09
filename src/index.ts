@@ -2,18 +2,20 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import executeEcho from "./commands/echo";
-import crypto from 'crypto';
+import crypto from "crypto";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.json({
-  verify: (req: any, res, buf) => {
-    req.rawBody = buf;
-  }
-}));
+app.use(
+  express.json({
+    verify: (req: any, res, buf) => {
+      req.rawBody = buf;
+    },
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 
 interface RequestBody {
@@ -24,38 +26,42 @@ interface CustomRequest extends Request<{}, {}, RequestBody> {
   rawBody: Buffer;
 }
 
-const handleWebhook = async (
-  req: CustomRequest,
-  res: Response
-) => {
+const handleWebhook = async (req: CustomRequest, res: Response) => {
   const signature = req.headers["x-hub-signature-256"];
+  console.log(`Signature: ${signature}`);
 
   if (!signature) {
-    return res.status(400).send('Missing signature');
+    console.log("Missing signature");
+    return res.status(400).send("Missing signature");
   }
 
   let computedSignature;
 
   try {
     computedSignature = crypto
-      .createHmac('sha256', (process.env.WEBHOOK_SECRET as string))
+      .createHmac("sha256", process.env.WEBHOOK_SECRET as string)
       .update(req.rawBody)
-      .digest('hex');
+      .digest("hex");
   } catch (err) {
-    return res.status(400).send('Webhook signature verification failed');
+    console.log("Webhook signature verification failed");
+    return res.status(400).send("Webhook signature verification failed");
   }
 
   const jsonData = req.body;
   const { serviceId } = jsonData;
 
-  if (!serviceId) return;
+  if (!serviceId) {
+    console.log("Missing serviceId");
+    return res.status(400).send("Missing serviceId");
+  }
 
   executeEcho(serviceId);
-  
+
   res.sendStatus(204);
 };
 
 app.post("/", (req: Request, res: Response) => {
+  console.log("POST received");
   handleWebhook(req as CustomRequest, res);
 });
 
