@@ -3,7 +3,7 @@ import { exec } from "child_process";
 const urlToService: Record<string, string[]> = {
   ["https://github.com/xptea/VoidsMusic"]: [
     "MusicBot1",
-    "MusicBot2",
+    // "MusicBot2",
     // "MusicBot3",
   ],
 };
