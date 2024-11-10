@@ -43,10 +43,13 @@ const executeEcho = async (url: string) => {
     console.log(`Received serviceId: ${serviceId}`);
 
     const directory = directories[serviceId];
+
     if (!directory) {
       console.log(`Couldn't find a Directory for ${serviceId}`);
       continue;
     }
+
+    console.log(`Found directory: ${serviceId}`);
 
     await execCommand(
       `bash src/commands/redeploy.sh /home/${directory} ${serviceId}`
