@@ -17,7 +17,7 @@ function redeployScript(serviceId: string): Promise<void> {
   });
 }
 
-const executeEcho = async (url: string) => {
+const executeEcho = async (url: string, commitName: string) => {
   const serviceIds = SERVICES[url];
 
   if (!serviceIds) {
@@ -36,7 +36,7 @@ const executeEcho = async (url: string) => {
       const timeDifference =
         new Date().getTime() - new Date(timestamp).getTime();
 
-      await embedSender(serviceId, url, timeDifference);
+      await embedSender(serviceId, url, commitName, timeDifference);
     } catch {
       console.log(`Error ${serviceId}`);
     }

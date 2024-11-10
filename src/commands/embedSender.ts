@@ -11,17 +11,19 @@ function randomImage() {
 export default async (
   serviceId: string,
   url: string,
+  commitName: string,
   timeDifference: number
 ) => {
   const embed = new EmbedBuilder()
     .setTitle(`Deployment Success: ${serviceId}`)
     .setDescription(`Deployment for **${serviceId}** completed successfully!`)
-    .setColor(0x00ff00) // Green color for success
+    .setColor(0x00ff00)
     .addFields(
-      { name: "URL", value: url, inline: true },
-      { name: "Time to Deploy", value: `${timeDifference}ms`, inline: true }
+      { name: "URL", value: url },
+      { name: "COMMIT", value: commitName },
+      { name: "Time to Deploy", value: `${timeDifference}ms` }
     )
-    .setImage(randomImage())
+    // .setImage(randomImage())
     .setFooter({ text: "Deployment System" })
     .setTimestamp();
 

@@ -22,6 +22,11 @@ interface RequestBody {
   repository?: {
     url: string;
   };
+  commits?: [
+    {
+      message: string;
+    }
+  ]
 }
 
 interface CustomRequest extends Request<{}, {}, RequestBody> {
@@ -48,13 +53,14 @@ const handleWebhook = async (req: CustomRequest, res: Response) => {
 
   const jsonData = req.body;
   const url = jsonData?.repository?.url;
+  const commitName = jsonData?.commits?.[0]?.message || "UNKNOWN";
 
   if (!url) {
     console.log("Missing url");
     return res.status(400).send("Missing url");
   }
 
-  executeEcho(url);
+  executeEcho(url, commitName);
 
   res.sendStatus(204);
 };
