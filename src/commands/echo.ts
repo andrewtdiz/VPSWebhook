@@ -1,4 +1,8 @@
 import { exec } from "child_process";
+import { promisify } from "util";
+
+// Promisify exec
+const execPromise = promisify(exec);
 
 const urlToService: Record<string, string[]> = {
   ["https://github.com/xptea/VoidsMusic"]: [
@@ -17,6 +21,16 @@ const directories: Record<string, string> = {
   MusicBot3: "voidmusicbot3",
   VPSWebhook: "VPSWebhook",
 };
+
+async function redeployScript(directory: string, serviceId: string) {
+  try {
+    await execPromise(
+      `bash ./src/commands/redeploy.sh /home/${directory}/ ${serviceId}`
+    );
+  } catch (error) {
+    console.error(`Error executing script: ${error}`);
+  }
+}
 
 const executeEcho = async (url: string) => {
   const serviceIds = urlToService[url];
@@ -39,15 +53,7 @@ const executeEcho = async (url: string) => {
     console.log(`Found serviceId: ${serviceId}, directory: ${directory}`);
 
     try {
-      exec(
-        `bash ./src/commands/redeploy.sh /home/${directory}/ ${serviceId}`,
-        (error, stdout, stderr) => {
-          if (error) {
-            console.error(`Error executing script: ${error.message}`);
-            return;
-          }
-        }
-      );
+      await redeployScript(directory, serviceId);
     } catch {
       console.log(`Error ${directory} ${serviceId}`);
     }
