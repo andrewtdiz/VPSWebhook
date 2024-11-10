@@ -26,6 +26,8 @@ const executeEcho = async (url: string) => {
     return;
   }
 
+  const timestamp = new Date().toISOString();
+
   for (const serviceId of serviceIds) {
     const directory = directories[serviceId];
 
@@ -57,6 +59,11 @@ const executeEcho = async (url: string) => {
       return;
     }
   });
+
+  const now = new Date();
+  const timestampDate = new Date(timestamp);
+  const timeDifference = now.getTime() - timestampDate.getTime();
+  console.log(`Time elapsed since deployment: ${timeDifference}ms`);
 };
 
 export default executeEcho;
