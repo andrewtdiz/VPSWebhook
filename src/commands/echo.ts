@@ -17,6 +17,8 @@ const directories: Record<string, string> = {
 
 async function execCommand(command: string) {
   return await new Promise((resolve, reject) => {
+    console.log(command);
+
     exec(command, (error, stdout, stderr) => {
       if (error) {
         reject(`Error executing command: ${error.message}`);
@@ -52,8 +54,21 @@ const executeEcho = async (url: string) => {
     console.log(`Found directory: ${directory}`);
 
     try {
-      await execCommand(
-        `bash ./src/commands/redeploy.sh /home/${directory}/ ${serviceId}`
+      exec(
+        `bash ./src/commands/redeploy.sh /home/${directory}/ ${serviceId}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.error(`Error executing script: ${error.message}`);
+            return;
+          }
+
+          if (stderr) {
+            console.error(`stderr: ${stderr}`);
+            return;
+          }
+
+          console.log(`stdout: ${stdout}`);
+        }
       );
     } catch {
       console.log(`Error ${directory} ${serviceId}`);
