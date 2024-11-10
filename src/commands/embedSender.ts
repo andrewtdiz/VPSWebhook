@@ -1,32 +1,30 @@
+import { EmbedBuilder } from "discord.js";
+import IMAGES from "./IMAGES";
+
 const WEBHOOK_URL =
   "https://discord.com/api/webhooks/1305189305819332720/-ju-xbEzJhFcp3dKJyKMBhpexkbJwxylvYNtVq5mggfRwfYQMBr7qySwRswWMOvCXDsf";
+
+function randomImage() {
+  return IMAGES[Math.floor(Math.random() * IMAGES.length)];
+}
 
 export default async (
   serviceId: string,
   url: string,
   timeDifference: number
 ) => {
-  const embed = {
-    title: `Deployment Success: ${serviceId}`,
-    description: `Deployment for **${serviceId}** completed successfully!`,
-    color: 0x00ff00,
-    fields: [
-      {
-        name: "URL",
-        value: url,
-        inline: true,
-      },
-      {
-        name: "Time to Deploy",
-        value: `${timeDifference}ms`,
-        inline: true,
-      },
-    ],
-    footer: {
-      text: "Deployment System",
-    },
-    timestamp: new Date().toISOString(),
-  };
+  const embed = new EmbedBuilder()
+    .setTitle(`Deployment Success: ${serviceId}`)
+    .setDescription(`Deployment for **${serviceId}** completed successfully!`)
+    .setColor(0x00ff00) // Green color for success
+    .addFields(
+      { name: "URL", value: url, inline: true },
+      { name: "Time to Deploy", value: `${timeDifference}ms`, inline: true }
+    )
+    .setImage(randomImage())
+    .setFooter({ text: "Deployment System" })
+    .setTimestamp();
+
   try {
     const response = await fetch(WEBHOOK_URL, {
       method: "POST",
@@ -34,7 +32,7 @@ export default async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        embeds: [embed],
+        embeds: [embed.toJSON()],
       }),
     });
 
