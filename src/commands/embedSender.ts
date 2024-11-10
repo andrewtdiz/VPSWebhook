@@ -9,7 +9,7 @@ export default async (
   const embed = {
     title: `Deployment Success: ${serviceId}`,
     description: `Deployment for **${serviceId}** completed successfully!`,
-    color: 0x00ff00, // Green color for success
+    color: 0x00ff00,
     fields: [
       {
         name: "URL",
