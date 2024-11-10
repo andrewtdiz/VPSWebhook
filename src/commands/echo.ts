@@ -18,24 +18,6 @@ const directories: Record<string, string> = {
   VPSWebhook: "VPSWebhook",
 };
 
-async function execCommand(command: string) {
-  return await new Promise((resolve, reject) => {
-    console.log(command);
-
-    exec(command, (error, stdout, stderr) => {
-      if (error) {
-        reject(`Error executing command: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        reject(`Error: ${stderr}`);
-        return;
-      }
-      resolve(stdout);
-    });
-  });
-}
-
 const executeEcho = async (url: string) => {
   const serviceIds = urlToService[url];
 
