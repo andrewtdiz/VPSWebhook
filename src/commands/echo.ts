@@ -69,7 +69,7 @@ const executeEcho = async (url: string) => {
   const now = new Date();
   const timestampDate = new Date(timestamp);
   const timeDifference = now.getTime() - timestampDate.getTime();
-  console.log(`Time elapsed since deployment: ${timeDifference}ms`);
+  console.log(`Time to Deployment: ${timeDifference}ms`);
 };
 
 export default executeEcho;
