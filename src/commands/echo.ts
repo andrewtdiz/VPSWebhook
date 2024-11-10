@@ -53,7 +53,7 @@ const executeEcho = async (url: string) => {
     }
   }
 
-  exec(`pm2 save`, (error, stdout, stderr) => {
+  exec(`pm2 save`, (error) => {
     if (error) {
       console.error(`Error executing script: ${error.message}`);
       return;
