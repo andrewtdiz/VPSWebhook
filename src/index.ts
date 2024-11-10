@@ -52,8 +52,6 @@ const handleWebhook = async (req: CustomRequest, res: Response) => {
   const jsonData = req.body;
   const url = jsonData?.repository?.url;
 
-  console.log(jsonData);
-
   if (!url) {
     console.log("Missing url");
     return res.status(400).send("Missing url");

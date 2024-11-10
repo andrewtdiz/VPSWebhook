@@ -4,7 +4,7 @@ const urlToService: Record<string, string[]> = {
   ["https://github.com/xptea/VoidsMusic"]: [
     "MusicBot1",
     "MusicBot2",
-    "MusicBot3",
+    // "MusicBot3",
   ],
 };
 
