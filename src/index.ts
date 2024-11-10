@@ -37,10 +37,8 @@ const handleWebhook = async (req: CustomRequest, res: Response) => {
     return res.status(400).send("Missing signature");
   }
 
-  let computedSignature;
-
   try {
-    computedSignature = crypto
+    crypto
       .createHmac("sha256", process.env.WEBHOOK_SECRET as string)
       .update(req.rawBody)
       .digest("hex");
