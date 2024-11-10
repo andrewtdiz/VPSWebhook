@@ -30,7 +30,6 @@ interface CustomRequest extends Request<{}, {}, RequestBody> {
 
 const handleWebhook = async (req: CustomRequest, res: Response) => {
   const signature = req.headers["x-hub-signature-256"];
-  console.log(`Signature: ${signature}`);
 
   if (!signature) {
     console.log("Missing signature");

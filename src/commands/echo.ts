@@ -27,8 +27,6 @@ const executeEcho = async (url: string) => {
   }
 
   for (const serviceId of serviceIds) {
-    console.log(`Received serviceId: ${serviceId}`);
-
     const directory = directories[serviceId];
 
     if (!directory) {
@@ -36,7 +34,7 @@ const executeEcho = async (url: string) => {
       continue;
     }
 
-    console.log(`Found directory: ${directory}`);
+    console.log(`Found serviceId: ${serviceId}, directory: ${directory}`);
 
     try {
       exec(
