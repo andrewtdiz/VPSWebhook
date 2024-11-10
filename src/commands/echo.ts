@@ -3,9 +3,11 @@ import { exec } from "child_process";
 const urlToService: Record<string, string[]> = {
   ["https://github.com/xptea/VoidsMusic"]: [
     "MusicBot1",
-    // "MusicBot2",
+    "MusicBot2",
     // "MusicBot3",
   ],
+  ["https://github.com/xptea/locked-in-devs"]: ["NotLockedInBot"],
+  ["https://github.com/andrewtdiz/VPSWebhook"]: ["VPSWebhook"],
 };
 
 const directories: Record<string, string> = {
@@ -13,6 +15,7 @@ const directories: Record<string, string> = {
   MusicBot1: "voidmusicbot",
   MusicBot2: "voidmusicbot2",
   MusicBot3: "voidmusicbot3",
+  VPSWebhook: "VPSWebhook",
 };
 
 async function execCommand(command: string) {
@@ -59,9 +62,6 @@ const executeEcho = async (url: string) => {
         (error, stdout, stderr) => {
           if (error) {
             console.error(`Error executing script: ${error.message}`);
-            return;
-          }
-          if (stderr) {
             return;
           }
         }

@@ -6,6 +6,8 @@ echo "Pulling latest code from git..."
 echo "Calling with command: " "$1" " and " "$2"
 
 if git pull; then
+    bun run build
+
     echo "Git pull completed successfully."
 
     pm2 restart "$2"
