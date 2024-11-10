@@ -52,6 +52,13 @@ const executeEcho = async (url: string) => {
       console.log(`Error ${directory} ${serviceId}`);
     }
   }
+
+  exec(`pm2 save`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing script: ${error.message}`);
+      return;
+    }
+  });
 };
 
 export default executeEcho;
