@@ -2,8 +2,6 @@ CURRENT_DIR=$(pwd)
 
 cd "$1" || exit
 
-echo "Current directory: $(pwd)"
-
 echo "Pulling latest code from git..."
 echo "Calling with command: " "$1" " and " "$2"
 

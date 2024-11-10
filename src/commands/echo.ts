@@ -61,13 +61,9 @@ const executeEcho = async (url: string) => {
             console.error(`Error executing script: ${error.message}`);
             return;
           }
-
           if (stderr) {
-            console.error(`stderr: ${stderr}`);
             return;
           }
-
-          console.log(`stdout: ${stdout}`);
         }
       );
     } catch {
