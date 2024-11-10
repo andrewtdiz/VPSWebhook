@@ -2,7 +2,7 @@ import { exec } from "child_process";
 import SERVICES from "../SERVICES";
 
 const WEBHOOK_URL =
-  "https://discord.com/api/webhooks/1305189305819332720/-ju-xbEzJhFcp3dKJyKMBhpexkbJwxylvYNtVq5mggfRwfYQMBr7qySwRswWMOvCXDsf"; // Add your webhook URL here
+  "https://discord.com/api/webhooks/1305189305819332720/-ju-xbEzJhFcp3dKJyKMBhpexkbJwxylvYNtVq5mggfRwfYQMBr7qySwRswWMOvCXDsf";
 
 const sendWebhook = async (message: string) => {
   try {
