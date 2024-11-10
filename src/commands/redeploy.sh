@@ -10,7 +10,6 @@ echo "Calling with command: " "$1" " and " "$2"
 if git pull; then
     echo "Git pull completed successfully."
 
-    # echo "Restart pm2 of: " "$2"
     pm2 restart "$2"
 
     echo "Server restarted successfully with PM2."

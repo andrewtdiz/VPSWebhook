@@ -53,10 +53,10 @@ const executeEcho = async (url: string) => {
 
     try {
       await execCommand(
-        `bash src/commands/redeploy.sh /home/${directory} ${serviceId}`
+        `bash ./src/commands/redeploy.sh /home/${directory}/ ${serviceId}`
       );
     } catch {
-      console.log(`Error ${directory} ${serviceId}`)
+      console.log(`Error ${directory} ${serviceId}`);
     }
   }
 };
