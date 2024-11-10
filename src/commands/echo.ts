@@ -49,7 +49,7 @@ const executeEcho = async (url: string) => {
       continue;
     }
 
-    console.log(`Found directory: ${serviceId}`);
+    console.log(`Found directory: ${directory}`);
 
     await execCommand(
       `bash src/commands/redeploy.sh /home/${directory} ${serviceId}`
