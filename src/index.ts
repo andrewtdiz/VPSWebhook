@@ -19,7 +19,9 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 
 interface RequestBody {
-  serviceId?: string;
+  repository?: {
+    url: string;
+  };
 }
 
 interface CustomRequest extends Request<{}, {}, RequestBody> {
@@ -48,16 +50,16 @@ const handleWebhook = async (req: CustomRequest, res: Response) => {
   }
 
   const jsonData = req.body;
-  const { serviceId } = jsonData;
+  const url = jsonData?.repository?.url;
 
   console.log(jsonData);
 
-  if (!serviceId) {
-    console.log("Missing serviceId");
-    return res.status(400).send("Missing serviceId");
+  if (!url) {
+    console.log("Missing url");
+    return res.status(400).send("Missing url");
   }
 
-  executeEcho(serviceId);
+  executeEcho(url);
 
   res.sendStatus(204);
 };
