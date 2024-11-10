@@ -1,19 +1,6 @@
-# TypeScript x Express x Node.js
+# GitHub Webhook VPS Push-to-Sync
 
-This repository contains a basic TypeScript Express application that utilizes Node.js for server-side functionality. It is configured with Nodemon for automatic server restarts during development and uses ts-node for TypeScript execution.
-
-If you are not familiar with a TypeScript workflow, consider checking out [the JavaScript branch](https://github.com/c99rahul/ts-node-express/tree/javascript) of this repository.
-
-Feeling lost? Go through [the tutorial](https://blog.logrocket.com/how-to-set-up-node-typescript-express/) that this repository is built upon.
-
-![Monitoring the Changes Detected By Nodemon](https://github.com/c99rahul/ts-node-express/assets/70071346/888bfc19-7034-4270-9696-04fc2b9fcb29)
-
-## Prerequisites
-
-Before you begin, ensure you have the following installed on your machine:
-
-- [Node.js](https://nodejs.org/): Ensure that Node.js, preferably version 16 or higher, is installed on your system, as this project utilizes the latest versions of TypeScript and Nodemon.
-- [npm](https://www.npmjs.com/): npm is the package manager for Node.js and comes with the Node.js installation.
+Requires `pm2`
 
 ## Installation
 

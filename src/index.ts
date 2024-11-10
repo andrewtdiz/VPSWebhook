@@ -59,13 +59,11 @@ const handleWebhook = async (req: CustomRequest, res: Response) => {
   res.sendStatus(204);
 };
 
-app.get("/", async (req: Request, res: Response) => {
-  console.log("GET received");
-  res.send("Hell world");
+app.get("/", async (_, res: Response) => {
+  res.send("Hello world");
 });
 
 app.post("/", async (req: Request, res: Response) => {
-  console.log("POST received");
   try {
     await handleWebhook(req as CustomRequest, res);
   } catch (error) {

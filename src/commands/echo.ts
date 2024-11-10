@@ -1,27 +1,10 @@
 import { exec } from "child_process";
+import SERVICES from "../SERVICES";
 
-const urlToService: Record<string, string[]> = {
-  ["https://github.com/xptea/VoidsMusic"]: [
-    "MusicBot1",
-    "MusicBot2",
-    // "MusicBot3",
-  ],
-  ["https://github.com/xptea/locked-in-devs"]: ["NotLockedInBot"],
-  ["https://github.com/andrewtdiz/VPSWebhook"]: ["VPSWebhook"],
-};
-
-const directories: Record<string, string> = {
-  NotLockedInBot: "notlockedin",
-  MusicBot1: "voidmusicbot",
-  MusicBot2: "voidmusicbot2",
-  MusicBot3: "voidmusicbot3",
-  VPSWebhook: "VPSWebhook",
-};
-
-function redeployScript(directory: string, serviceId: string): Promise<void> {
+function redeployScript(serviceId: string): Promise<void> {
   return new Promise((resolve, reject) => {
     exec(
-      `bash ./src/commands/redeploy.sh /home/${directory}/ ${serviceId}`,
+      `bash ./src/commands/redeploy.sh /home/${serviceId}/ ${serviceId}`,
       (error) => {
         if (error) {
           console.error(`Error executing script: ${error.message}`);
@@ -34,7 +17,7 @@ function redeployScript(directory: string, serviceId: string): Promise<void> {
 }
 
 const executeEcho = async (url: string) => {
-  const serviceIds = urlToService[url];
+  const serviceIds = SERVICES[url];
 
   if (!serviceIds) {
     console.log(`Couldn't find a serviceId for ${url}`);
@@ -44,19 +27,12 @@ const executeEcho = async (url: string) => {
   const timestamp = new Date().toISOString();
 
   for (const serviceId of serviceIds) {
-    const directory = directories[serviceId];
-
-    if (!directory) {
-      console.log(`Couldn't find a Directory for ${serviceId}`);
-      continue;
-    }
-
-    console.log(`Found serviceId: ${serviceId}, directory: ${directory}`);
+    console.log(`Found serviceId: ${serviceId}`);
 
     try {
-      await redeployScript(directory, serviceId);
+      await redeployScript(serviceId);
     } catch {
-      console.log(`Error ${directory} ${serviceId}`);
+      console.log(`Error ${serviceId}`);
     }
   }
 
