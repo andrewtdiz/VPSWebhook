@@ -1,10 +1,6 @@
 const VOIDS_MUSIC_REPO = "https://github.com/andrewtdiz/VoidsMusix";
 
-const VOIDS_MUSIC_BOTS = [
-  "MusicBot1",
-  "MusicBot2",
-  // "MusicBot3",
-];
+const VOIDS_MUSIC_BOTS = ["MusicBot1", "MusicBot2"];
 
 const LOCKED_IN_REPO = "https://github.com/andrewtdiz/locked-in-devs";
 
