@@ -1,4 +1,4 @@
-const VOIDS_MUSIC_REPO = "https://github.com/xptea/VoidsMusic";
+const VOIDS_MUSIC_REPO = "https://github.com/andrewtdiz/VoidsMusix";
 
 const VOIDS_MUSIC_BOTS = [
   "MusicBot1",
@@ -6,9 +6,9 @@ const VOIDS_MUSIC_BOTS = [
   // "MusicBot3",
 ];
 
-const LOCKED_IN_REPO = "https://github.com/xptea/locked-in-devs";
+const LOCKED_IN_REPO = "https://github.com/andrewtdiz/locked-in-devs";
 
-const LOCKED_IN_BOTS = ["NotLockedInBot"];
+const LOCKED_IN_BOTS = ["LockedInBot"];
 
 const WEB_HOOK_REP = "https://github.com/andrewtdiz/VPSWebhook";
 
