@@ -71,6 +71,7 @@ app.get("/", async (_, res: Response) => {
 
 app.post("/", async (req: Request, res: Response) => {
   try {
+    console.log(req);
     await handleWebhook(req as CustomRequest, res);
   } catch (error) {
     console.error("Error handling webhook:", error);
