@@ -1,4 +1,4 @@
-const VOIDS_MUSIC_REPO = "https://api.github.com/andrewtdiz/VoidsMusix";
+const VOIDS_MUSIC_REPO = "https://api.github.com/repos/andrewtdiz/VoidsMusix";
 
 const VOIDS_MUSIC_BOTS = [
   "MusicBot1",
@@ -6,15 +6,15 @@ const VOIDS_MUSIC_BOTS = [
   // "MusicBot3",
 ];
 
-const LOCKED_IN_REPO = "https://api.github.com/andrewtdiz/locked-in-devs";
+const LOCKED_IN_REPO = "https://api.github.com/repos/andrewtdiz/locked-in-devs";
 
 const LOCKED_IN_BOTS = ["LockedInBot"];
 
-const WEB_HOOK_REP = "https://api.github.com/andrewtdiz/VPSWebhook";
+const WEB_HOOK_REP = "https://api.github.com/repos/andrewtdiz/VPSWebhook";
 
 const WEB_HOOK_BOTS = ["VPSWebhook"];
 
-const PING_RENDER_REPO = "https://api.github.com/andrewtdiz/pingrender";
+const PING_RENDER_REPO = "https://api.github.com/repos/andrewtdiz/pingrender";
 
 const PING_RENDER_BOTS = ["pingrender"];
 
