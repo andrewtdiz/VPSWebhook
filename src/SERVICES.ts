@@ -16,7 +16,7 @@ const WEB_HOOK_BOTS = ["VPSWebhook"];
 
 const PING_RENDER_REPO = "https://github.com/andrewtdiz/pingrender";
 
-const PING_RENDER_BOTS = ["PingRender"];
+const PING_RENDER_BOTS = ["pingrender"];
 
 export default {
   [VOIDS_MUSIC_REPO]: VOIDS_MUSIC_BOTS,
