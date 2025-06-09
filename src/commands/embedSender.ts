@@ -2,7 +2,7 @@ import { EmbedBuilder } from "discord.js";
 import IMAGES from "./IMAGES";
 
 const WEBHOOK_URL =
-  "https://discord.com/api/webhooks/1306276037122064477/9M9ucIC_RRzhAIq-q5BDUXNBW4J6ApkUw610cacW2_nXop6QT2TVxjL4bg5QeuLqYcvd";
+  "https://discord.com/api/webhooks/1381441286560546866/1Bn0_EoifFMGEo1qw_GLxqizv9PsngeKdMPMYfsZ5JbxqLtHTO6rZ_WcRiomrIhouT_v";
 
 function randomImage() {
   return IMAGES[Math.floor(Math.random() * IMAGES.length)];
