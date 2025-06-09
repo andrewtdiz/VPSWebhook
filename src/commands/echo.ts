@@ -18,6 +18,7 @@ function redeployScript(serviceId: string): Promise<void> {
 }
 
 const executeEcho = async (url: string, commitName: string) => {
+  console.log(SERVICES);
   const serviceIds = SERVICES[url];
 
   if (!serviceIds) {
