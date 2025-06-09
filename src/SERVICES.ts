@@ -14,10 +14,16 @@ const WEB_HOOK_REP = "https://github.com/andrewtdiz/VPSWebhook";
 
 const WEB_HOOK_BOTS = ["VPSWebhook"];
 
+const PING_RENDER_REPO = "https://github.com/andrewtdiz/pingrender";
+
+const PING_RENDER_BOTS = ["PingRender"];
+
 export default {
   [VOIDS_MUSIC_REPO]: VOIDS_MUSIC_BOTS,
 
   [LOCKED_IN_REPO]: LOCKED_IN_BOTS,
 
   [WEB_HOOK_REP]: WEB_HOOK_BOTS,
+
+  [PING_RENDER_REPO]: PING_RENDER_BOTS,
 } as Record<string, string[]>;
