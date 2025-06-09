@@ -52,7 +52,6 @@ const handleWebhook = async (req: CustomRequest, res: Response) => {
   }
 
   const jsonData = req.body;
-  console.log(jsonData);
   const url = jsonData?.repository?.url;
   const commitName = jsonData?.commits?.[0]?.message || "UNKNOWN";
 
