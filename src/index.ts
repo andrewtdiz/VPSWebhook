@@ -81,7 +81,7 @@ app.post("/", async (req: Request, res: Response) => {
 app.post("/command", async (req: Request, res: Response) => {
   console.log("COMMAND RECEIVED");
   const { command, query, voiceChannelId, guildId } = req.body;
-  console.log(command);
+  console.log(command, query, voiceChannelId, guildId);
 
   if (!command || !query || !voiceChannelId || !guildId) {
     return res.status(400).send("Missing required fields");
