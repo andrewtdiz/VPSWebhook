@@ -78,6 +78,37 @@ app.post("/", async (req: Request, res: Response) => {
   }
 });
 
+app.post("/command", async (req: Request, res: Response) => {
+  const { command, query, voiceChannelId, guildId } = req.body;
+  console.log(command);
+
+  if (!command || !query || !voiceChannelId || !guildId) {
+    return res.status(400).send("Missing required fields");
+  }
+  if (["play", "queue", "stop", "pause", "resume", "mute", "unmute", "deafen", "undeafen"].includes(command)) {
+    const result = await fetch(`http://localhost:4000/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        command,
+        query,
+        voiceChannelId,
+        guildId,
+      }),
+    });
+    if (result.ok) {
+      return res.status(204).send("Command executed successfully");
+    }
+    return res.status(500).send("Failed to execute command");
+  } else {
+    return res.status(400).send("Invalid command");
+  }
+
+  res.sendStatus(204);
+});
+
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
