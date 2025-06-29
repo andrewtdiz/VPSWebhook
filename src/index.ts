@@ -87,7 +87,7 @@ app.post("/command", async (req: Request, res: Response) => {
     console.log("Missing required fields:", { command, voiceChannelId, guildId });
     return res.status(400).send("Missing required fields");
   }
-  if (["play", "queue", "stop", "pause", "resume", "mute", "unmute", "deafen", "undeafen"].includes(command)) {
+  if (["play", "queue", "skip", "stop", "pause", "resume", "mute", "unmute", "deafen", "undeafen"].includes(command)) {
     console.log(`Executing command: ${command} with query: ${query}`);
     const result = await fetch(`http://localhost:4000/`, {
       method: "POST",
