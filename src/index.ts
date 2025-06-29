@@ -83,8 +83,8 @@ app.post("/command", async (req: Request, res: Response) => {
   const { command, query, voiceChannelId, guildId } = req.body;
   console.log(command, query, voiceChannelId, guildId);
 
-  if (!command || !query || !voiceChannelId || !guildId) {
-    console.log("Missing required fields:", { command, query, voiceChannelId, guildId });
+  if (!command || !voiceChannelId || !guildId) {
+    console.log("Missing required fields:", { command, voiceChannelId, guildId });
     return res.status(400).send("Missing required fields");
   }
   if (["play", "queue", "stop", "pause", "resume", "mute", "unmute", "deafen", "undeafen"].includes(command)) {
