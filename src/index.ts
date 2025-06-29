@@ -84,9 +84,11 @@ app.post("/command", async (req: Request, res: Response) => {
   console.log(command, query, voiceChannelId, guildId);
 
   if (!command || !query || !voiceChannelId || !guildId) {
+    console.log("Missing required fields:", { command, query, voiceChannelId, guildId });
     return res.status(400).send("Missing required fields");
   }
   if (["play", "queue", "stop", "pause", "resume", "mute", "unmute", "deafen", "undeafen"].includes(command)) {
+    console.log(`Executing command: ${command} with query: ${query}`);
     const result = await fetch(`http://localhost:4000/`, {
       method: "POST",
       headers: {
@@ -100,14 +102,15 @@ app.post("/command", async (req: Request, res: Response) => {
       }),
     });
     if (result.ok) {
+      console.log(`Command ${command} executed successfully`);
       return res.status(204).send("Command executed successfully");
     }
+    console.log(`Failed to execute command ${command}:`, result.status, await result.text());
     return res.status(500).send("Failed to execute command");
   } else {
+    console.log(`Invalid command received: ${command}`);
     return res.status(400).send("Invalid command");
   }
-
-  res.sendStatus(204);
 });
 
 app.listen(port, () => {
