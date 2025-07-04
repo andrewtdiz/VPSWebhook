@@ -121,11 +121,11 @@ app.post("/command", async (req: Request, res: Response) => {
   today4AM.setUTCHours(12, 0, 0, 0);
   if (now >= today4AM) today4AM.setDate(today4AM.getDate() + 1);
   const timeUntil4AM = today4AM.getTime() - now.getTime();
-  console.log(`Next deployment scheduled in ${Math.round(timeUntil4AM / hour)} hours`);
+  console.log(`Next music bot reset scheduled in ${Math.round(timeUntil4AM / hour)} hours`);
 
   setTimeout(() => {
-    redeploy(VOIDS_MUSIC_REPO, "Scheduled daily deployment");
-    setInterval(() => redeploy(VOIDS_MUSIC_REPO, "Scheduled daily deployment"), 24 * hour);
+    redeploy(VOIDS_MUSIC_REPO, "Daily music bot reset");
+    setInterval(() => redeploy(VOIDS_MUSIC_REPO, "Daily music bot reset"), 24 * hour);
   }, timeUntil4AM);
 })();
 
