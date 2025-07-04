@@ -1,4 +1,4 @@
-const VOIDS_MUSIC_REPO = "https://api.github.com/repos/andrewtdiz/VoidsMusix";
+export const VOIDS_MUSIC_REPO = "https://api.github.com/repos/andrewtdiz/VoidsMusix";
 
 const VOIDS_MUSIC_BOTS = [
   "MusicBot1",

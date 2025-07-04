@@ -1,8 +1,9 @@
 // src/index.ts
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import executeEcho from "./commands/echo";
+import redeploy from "./commands/redeploy";
 import crypto from "crypto";
+import { VOIDS_MUSIC_REPO } from "./SERVICES";
 
 dotenv.config();
 
@@ -60,7 +61,7 @@ const handleWebhook = async (req: CustomRequest, res: Response) => {
     return res.status(400).send("Missing url");
   }
 
-  executeEcho(url, commitName);
+  redeploy(url, commitName);
 
   res.sendStatus(204);
 };
@@ -112,6 +113,21 @@ app.post("/command", async (req: Request, res: Response) => {
     return res.status(400).send("Invalid command");
   }
 });
+
+(() => {
+  const hour = 1000 * 60 * 60;
+  const now = new Date();
+  const today4AM = new Date();
+  today4AM.setUTCHours(12, 0, 0, 0);
+  if (now >= today4AM) today4AM.setDate(today4AM.getDate() + 1);
+  const timeUntil4AM = today4AM.getTime() - now.getTime();
+  console.log(`Next deployment scheduled in ${Math.round(timeUntil4AM / hour)} hours`);
+
+  setTimeout(() => {
+    redeploy(VOIDS_MUSIC_REPO, "Scheduled daily deployment");
+    setInterval(() => redeploy(VOIDS_MUSIC_REPO, "Scheduled daily deployment"), 24 * hour);
+  }, timeUntil4AM);
+})();
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
