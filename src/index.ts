@@ -88,19 +88,14 @@ app.post("/command", async (req: Request, res: Response) => {
     console.log("Missing required fields:", { command, voiceChannelId, guildId });
     return res.status(400).send("Missing required fields");
   }
-  if (["play", "queue", "skip", "stop", "pause", "resume", "mute", "unmute", "deafen", "undeafen"].includes(command)) {
+  if (["play", "queue", "skip", "stop", "pause", "resume", "mute", "unmute", "deafen", "undeafen", "create_task", "code_task", "get_info", "remove_task"].includes(command)) {
     console.log(`Executing command: ${command} with query: ${query}`);
     const result = await fetch(`http://localhost:4000/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        command,
-        query,
-        voiceChannelId,
-        guildId,
-      }),
+      body: JSON.stringify(req.body),
     });
     if (result.ok) {
       console.log(`Command ${command} executed successfully`);
