@@ -3,6 +3,7 @@ CURRENT_DIR=$(pwd)
 cd "$1" || exit
 
 if git pull; then
+    bun install
     bun run build
 
     pm2 restart "$2"
