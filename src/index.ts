@@ -69,18 +69,8 @@ app.post("/", async (c) => {
 });
 
 app.post("/command", async (c) => {
-  console.log("COMMAND RECEIVED");
   const body = await c.req.json();
-  const { command, query, voiceChannelId, guildId } = body;
 
-  if (!command || !voiceChannelId || !guildId) {
-    console.log("Missing required fields:", {
-      command,
-      voiceChannelId,
-      guildId,
-    });
-    return c.text("Missing required fields", 400);
-  }
   const result = await fetch(`http://localhost:4000/`, {
     method: "POST",
     headers: {
@@ -89,11 +79,10 @@ app.post("/command", async (c) => {
     body: JSON.stringify(body),
   });
   if (result.ok) {
-    console.log(`Command ${command} executed successfully`);
     return new Response("Command executed successfully", { status: 204 });
   }
   console.log(
-    `Failed to execute command ${command}:`,
+    `Failed to execute command`,
     result.status,
     await result.text()
   );
