@@ -2,7 +2,7 @@ export const VOIDS_MUSIC_REPO = "https://api.github.com/repos/andrewtdiz/VoidsMu
 
 const VOIDS_MUSIC_BOTS = [
   "MusicBot1",
-  "MusicBot2",
+  // "MusicBot2",
   // "MusicBot3",
 ];
 
