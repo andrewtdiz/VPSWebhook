@@ -101,9 +101,7 @@ app.post("/command", async (c) => {
     `Next music bot reset scheduled in ${Math.round(timeUntil4AM / hour)} hours`
   );
 
-  setTimeout(() => {
-    redeploy(VOIDS_MUSIC_REPO, "Daily music bot reset");
-
+  const updateYtDlp = () => {
     exec(`yt-dlp -U`, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing script: ${error.message}`);
@@ -112,9 +110,17 @@ app.post("/command", async (c) => {
       console.log("ATTEMPTING TO UPDATE YT-DLP");
       console.log(stdout);
     });
+  }
+
+  setTimeout(() => {
+    redeploy(VOIDS_MUSIC_REPO, "Daily music bot reset");
+    updateYtDlp();
 
     setInterval(
-      () => redeploy(VOIDS_MUSIC_REPO, "Daily music bot reset"),
+      () => {
+        redeploy(VOIDS_MUSIC_REPO, "Daily music bot reset");
+        updateYtDlp();
+      },
       24 * hour
     );
   }, timeUntil4AM);
