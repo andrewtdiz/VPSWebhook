@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import redeploy from "./commands/redeploy";
 import crypto from "crypto";
 import { VOIDS_MUSIC_REPO } from "./SERVICES";
+import { exec } from "child_process";
 
 dotenv.config();
 
@@ -102,6 +103,16 @@ app.post("/command", async (c) => {
 
   setTimeout(() => {
     redeploy(VOIDS_MUSIC_REPO, "Daily music bot reset");
+
+    exec(`yt-dlp -U`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing script: ${error.message}`);
+        return;
+      }
+      console.log("ATTEMPTING TO UPDATE YT-DLP");
+      console.log(stdout);
+    });
+
     setInterval(
       () => redeploy(VOIDS_MUSIC_REPO, "Daily music bot reset"),
       24 * hour
